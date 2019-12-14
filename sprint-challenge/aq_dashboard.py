@@ -33,7 +33,8 @@ def save_tuples():
 @APP.route('/')
 def root():
     """Base view."""
-    tuples = get_tuples()
+    records = Record.query.filter(Record.value >= 10).all()
+    tuples = [(record.datetime, record.value) for record in records]
     return f"{tuples}"
 
 
